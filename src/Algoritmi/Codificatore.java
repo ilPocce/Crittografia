@@ -1,30 +1,51 @@
 package Algoritmi;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Codificatore {
 
-    private final String key;
+    int iterazione, indiceChiave;
 
-    private List<Integer> numeri = new ArrayList<>();
-
-    public Codificatore(String key){
-        this.key = key;
+    public Codificatore(){
+        iterazione = 0;
+        indiceChiave = 0;
     }
-
 
     public String codifica(String chiaro){
         String scuro = "";
 
-        for (char ch : key.toCharArray()) {
-            numeri.add(Integer.getInteger(ch+""));
+        if (chiaro.length() == 1){
+            scuro += codificaCarattere(chiaro.charAt(0));
+        } else {
+            scuro = codificaCarattere(chiaro.charAt(0)) + codifica(chiaro.substring(1));
         }
 
-        System.out.println("key = " + key);
-        System.out.println("key splittata = " + numeri);
-
         return scuro;
+    }
+
+    private char codificaCarattere(char chiaro) {
+
+        iterazione++;
+        indiceChiave++;
+
+        if (indiceChiave > AlfabetoFacility.getChiave().size()){
+            indiceChiave=1;
+        }
+
+        System.out.println(AlfabetoFacility.getChiave().get(indiceChiave-1));
+
+        switch (iterazione){
+            case 1:
+                //System.out.println(1);
+                break;
+            case 2:
+                //System.out.println(2);
+                break;
+            case 3:
+                //System.out.println(3);
+                iterazione = 0;
+                break;
+        }
+
+        return chiaro;
     }
 
 }
