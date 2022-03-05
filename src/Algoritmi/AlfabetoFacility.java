@@ -1,15 +1,12 @@
 package Algoritmi;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class AlfabetoFacility {
 
     private static AlfabetoFacility instance = null;
 
-    private static final Set<Character> alfabeto = new HashSet<>();
+    private static final List<Character> alfabeto = new ArrayList<>();
     private static final List<Integer> chiave = new ArrayList<>();
 
     // Costruttore invisibile
@@ -47,7 +44,7 @@ public class AlfabetoFacility {
     }
 
 
-    public static Set<Character> getAlfabeto() {
+    public static List<Character> getAlfabeto() {
         return alfabeto;
     }
 

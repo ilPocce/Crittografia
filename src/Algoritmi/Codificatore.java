@@ -2,7 +2,7 @@ package Algoritmi;
 
 public class Codificatore {
 
-    int iterazione, indiceChiave;
+    private int iterazione, indiceChiave;
 
     public Codificatore(){
         iterazione = 0;
@@ -26,26 +26,37 @@ public class Codificatore {
         iterazione++;
         indiceChiave++;
 
+        char scuro;
+
         if (indiceChiave > AlfabetoFacility.getChiave().size()){
             indiceChiave=1;
         }
 
-        System.out.println(AlfabetoFacility.getChiave().get(indiceChiave-1));
+        // alfabeto da 1 a 187 caratteri (compresi)
+        int valoreRecuperato;
+        int valoreAggiornato;
 
         switch (iterazione){
             case 1:
-                //System.out.println(1);
-                break;
+                valoreRecuperato = AlfabetoFacility.getAlfabeto().indexOf(chiaro);
+                valoreAggiornato = valoreRecuperato + AlfabetoFacility.getChiave().get(indiceChiave-1);
+                valoreAggiornato = (valoreAggiornato > 187 ) ? valoreAggiornato -= 187 : valoreAggiornato;
+                scuro = AlfabetoFacility.getAlfabeto().get(valoreAggiornato);
             case 2:
-                //System.out.println(2);
-                break;
-            case 3:
-                //System.out.println(3);
-                iterazione = 0;
-                break;
+                valoreRecuperato = AlfabetoFacility.getAlfabeto().indexOf(chiaro);
+                valoreAggiornato = valoreRecuperato - AlfabetoFacility.getChiave().get(indiceChiave-1);
+                valoreAggiornato = (valoreAggiornato < 1 ) ? valoreAggiornato += 187 : valoreAggiornato;
+                scuro = AlfabetoFacility.getAlfabeto().get(valoreAggiornato);
+            default:
+                valoreRecuperato = AlfabetoFacility.getAlfabeto().indexOf(chiaro);
+                valoreAggiornato = valoreRecuperato * AlfabetoFacility.getChiave().get(indiceChiave-1);
+                while (valoreAggiornato > 187 ) {
+                    valoreAggiornato-= 187;
+                }
+                scuro = AlfabetoFacility.getAlfabeto().get(valoreAggiornato);
         }
 
-        return chiaro;
+        return scuro;
     }
 
 }
